@@ -677,20 +677,14 @@ public class RNPushNotificationHelper {
         if (soundName == null || "default".equalsIgnoreCase(soundName)) {
             return RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         } else {
-
             // sound name can be full filename, or just the resource name.
             // So the strings 'my_sound.mp3' AND 'my_sound' are accepted
             // The reason is to make the iOS and android javascript interfaces compatible
-
-            int resId;
-            if (context.getResources().getIdentifier(soundName, "raw", context.getPackageName()) != 0) {
-                resId = context.getResources().getIdentifier(soundName, "raw", context.getPackageName());
-            } else {
+            if (context.getResources().getIdentifier(soundName, "raw", context.getPackageName()) == 0) {
                 soundName = soundName.substring(0, soundName.lastIndexOf('.'));
-                resId = context.getResources().getIdentifier(soundName, "raw", context.getPackageName());
             }
 
-            return Uri.parse("android.resource://" + context.getPackageName() + "/" + resId);
+            return Uri.parse("android.resource://" + context.getPackageName() + "/raw/" + soundName);
         }
     }
 
