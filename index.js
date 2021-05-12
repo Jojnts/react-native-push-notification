@@ -4,16 +4,11 @@
 
 'use strict';
 
-import { AppState } from "react-native";
+import { AppState, Platform } from 'react-native';
+import { component } from './component';
 
-var RNNotificationsComponent = require( './component' );
-
-var RNNotifications = RNNotificationsComponent.component;
-
-let Platform = require('react-native').Platform;
-
-var Notifications = {
-  handler: RNNotifications,
+const Notifications = {
+  handler: component,
   onRegister: false,
   onRegistrationError: false,
   onNotification: false,
@@ -351,7 +346,8 @@ Notifications._transformNotificationObject = function(data, isFromBackground = n
   if ( isFromBackground === null ) {
     isFromBackground = (
       data.foreground === false ||
-      AppState.currentState === 'background'
+      AppState.currentState === 'background' ||
+      AppState.currentState === 'unknown'
     );
   }
 
@@ -607,5 +603,15 @@ Notifications.deleteChannel = function() {
 Notifications.setNotificationCategories = function() {
   return this.callNative('setNotificationCategories', arguments);
 }
+
+// https://developer.android.com/reference/android/app/NotificationManager#IMPORTANCE_DEFAULT
+Notifications.Importance = Object.freeze({
+  DEFAULT: 3,
+  HIGH: 4,
+  LOW: 2,
+  MIN: 1,
+  NONE: 0,
+  UNSPECIFIED: -1000,
+});
 
 module.exports = Notifications;

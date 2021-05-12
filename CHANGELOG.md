@@ -12,6 +12,22 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 
 ### Fixed
 
+## [7.3.0] 2021-05-12
+
+### Features
+- (Android) Add constants for notification importance [#1959](https://github.com/zo0r/react-native-push-notification/pull/1959)
+
+### Fixed
+
+- (Android) Fix: Task :react-native-push-notification:compileDebugJavaWithJavac FAILED [#1979](https://github.com/zo0r/react-native-push-notification/issues/1979)
+
+## [7.2.3] 2021-03-18
+
+### Fixed
+
+- (Android) Fix: Notification drawer doesn't close after click on action that navigates you to app [#1914](https://github.com/zo0r/react-native-push-notification/issues/1914)
+- (iOS) Fix: foreground notification property [#1916](https://github.com/zo0r/react-native-push-notification/pull/1916)
+
 ## [7.2.2] 2021-03-04
 
 ### Fixed
